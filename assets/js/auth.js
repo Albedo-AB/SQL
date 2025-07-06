@@ -1,6 +1,6 @@
 import { supabase } from './database.js';
 
-// ---- MANEJADOR DEL FORMULARIO DE LOGIN ----
+// ---- MANEJADOR DEL FORMULARIO DE LOGIN (SIN CAMBIOS) ----
 const loginForm = document.querySelector('#login-form');
 if (loginForm) {
     loginForm.addEventListener('submit', async (e) => {
@@ -17,13 +17,13 @@ if (loginForm) {
             Swal.fire({
                 icon: 'error',
                 title: 'Acceso Denegado',
-                text: 'El correo o la contraseña son incorrectos. Por favor, inténtalo de nuevo.',
+                text: 'El correo o la contraseña son incorrectos.',
                 background: '#1f2833',
                 color: '#ffffff'
             });
             return;
         }
-        
+
         if (data.user) {
             await Swal.fire({
                 icon: 'success',
@@ -39,42 +39,27 @@ if (loginForm) {
     });
 }
 
-// ---- MANEJADOR DEL FORMULARIO DE REGISTRO ----
+// ---- MANEJADOR DEL FORMULARIO DE REGISTRO (VERSIÓN SIMPLIFICADA Y CORRECTA) ----
 const registerForm = document.querySelector('#register-form');
 if (registerForm) {
     registerForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const username = document.querySelector('#username').value;
+        // El 'username' ya no se necesita aquí, porque el trigger lo crea desde el email.
         const email = document.querySelector('#email').value;
         const password = document.querySelector('#password').value;
 
-        // 1. Intenta registrar al usuario
-        const { data: authData, error: authError } = await supabase.auth.signUp({
+        // Ahora solo necesitamos llamar a signUp. El trigger se encarga del resto.
+        const { data, error } = await supabase.auth.signUp({
             email: email,
             password: password,
         });
 
-        if (authError) {
-            Swal.fire({ icon: 'error', title: 'Error en el registro', text: authError.message, background: '#1f2833', color: '#ffffff' });
-            return;
-        }
-        
-        if (!authData.user) {
-             Swal.fire({ icon: 'info', title: 'Registro pendiente', text: 'Ya existe un usuario con este email. Por favor, revisa tu correo para confirmar la cuenta.', background: '#1f2833', color: '#ffffff' });
+        if (error) {
+            Swal.fire({ icon: 'error', title: 'Error en el registro', text: error.message, background: '#1f2833', color: '#ffffff' });
             return;
         }
 
-        // 2. Inserta el perfil en la tabla 'usuarios'
-        const { error: profileError } = await supabase
-            .from('usuarios')
-            .insert([{ id: authData.user.id, username: username }]);
-        
-        if (profileError) {
-            Swal.fire({ icon: 'error', title: 'Error al crear perfil', text: profileError.message, background: '#1f2833', color: '#ffffff' });
-            return;
-        }
-
-        // 3. Muestra mensaje de éxito
+        // Mensaje de éxito
         Swal.fire({
             icon: 'success',
             title: '¡Registro Exitoso!',
@@ -87,7 +72,7 @@ if (registerForm) {
     });
 }
 
-// ---- MANEJADOR DEL BOTÓN DE LOGOUT ----
+// ---- MANEJADOR DEL BOTÓN DE LOGOUT (SIN CAMBIOS) ----
 const logoutButton = document.querySelector('#logout-button');
 if (logoutButton) {
     logoutButton.addEventListener('click', async () => {
