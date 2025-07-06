@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gamer's Vault - Dashboard</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <link rel="stylesheet" href="assets/css/gaming-theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="dashboard-header">
+        <h1 class="login-title">GAMER'S <span class="vault">VAULT</span></h1>
+        <button id="logout-button" class="logout-button">
+            <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+        </button>
+    </header>
+
+    <main class="container">
+        <h2 class="welcome-title">Tu Colección de Juegos</h2>
+
+        <div class="content-grid">
+            <section class="grid-section">
+                <h3 class="section-title">Videojuegos Registrados</h3>
+
+                <button id="load-games-button" class="load-button">
+                    <i class="fas fa-gamepad"></i> Mostrar mi Colección
+                </button>
+                
+                <div id="videojuegos-container" class="game-cards-container">
+                    </div>
+            </section>
+
+            <section class="grid-section">
+                <h3 class="section-title">Estadísticas de Géneros</h3>
+                <div class="chart-container">
+                    <canvas id="genreChart"></canvas>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="assets/js/auth.js"></script>
+    <script type="module" src="assets/js/dashboard.js"></script>
+    <script type="module" src="assets/js/charts.js"></script>
+</body>
+</html>
