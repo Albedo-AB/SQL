@@ -1,16 +1,85 @@
+// assets/js/auth.js (CORREGIDO Y MEJORADO)
 import { supabase } from './database.js';
 
-// ---- MANEJADOR DEL FORMULARIO DE LOGIN (SIN CAMBIOS) ----
-// assets/js/auth.js
+// ---- MANEJADOR DEL FORMULARIO DE LOGIN (CON TOASTIFY) ----
+const loginForm = document.querySelector('#login-form');
+if (loginForm) {
+    loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.querySelector('#email').value;
+        const password = document.querySelector('#password').value;
 
-// Importamos la función para crear el cliente desde el CDN de Supabase.
-// Usar la versión con "+esm" es clave para que los módulos funcionen.
-import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+        const { data, error } = await supabase.auth.signInWithPassword({
+            email: email,
+            password: password,
+        });
 
-// ❗️ IMPORTANTE: Reemplaza estos valores con tu URL y tu clave anónima de Supabase
-const supabaseUrl = 'https://hqiapfvhspauvmkbnyuq.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhxaWFwZnZoc3BhdXZta2JueXVxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE2NDI1NTgsImV4cCI6MjA2NzIxODU1OH0.wFzrnaNhkduEFwg6_8YYxjpSGP5UQAR3ocLVoDgLzms';
+        if (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Acceso Denegado',
+                text: 'El correo o la contraseña son incorrectos.',
+                background: '#1f2833',
+                color: '#ffffff'
+            });
+            return;
+        }
 
-// Creamos el cliente de Supabase y lo "exportamos".
-// Esto permite que cualquier otro script que lo necesite simplemente lo "importe".
-export const supabase = createClient(supabaseUrl, supabaseKey);
+        if (data.user) {
+            Toastify({
+                text: "✅ ¡Bienvenido de vuelta!",
+                duration: 2000,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                stopOnFocus: true,
+            }).showToast();
+
+            setTimeout(() => {
+                window.location.href = 'dashboard.html';
+            }, 1500);
+        }
+    });
+}
+
+// ---- MANEJADOR DEL FORMULARIO DE REGISTRO (CON TOASTIFY) ----
+const registerForm = document.querySelector('#register-form');
+if (registerForm) {
+    registerForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.querySelector('#email').value;
+        const password = document.querySelector('#password').value;
+
+        const { data, error } = await supabase.auth.signUp({
+            email: email,
+            password: password,
+        });
+
+        if (error) {
+            Swal.fire({ icon: 'error', title: 'Error en el registro', text: error.message, background: '#1f2833', color: '#ffffff' });
+            return;
+        }
+
+        Toastify({
+            text: "🎉 ¡Registro exitoso! Revisa tu correo para confirmar la cuenta.",
+            duration: 5000,
+            gravity: "top",
+            position: "center",
+            style: {
+                background: "linear-gradient(to right, #66fcf1, #45a29e)",
+                color: "#1a1a1d"
+            }
+        }).showToast();
+        
+        registerForm.reset();
+    });
+}
+
+// ---- MANEJADOR DEL BOTÓN DE LOGOUT (SIN CAMBIOS) ----
+const logoutButton = document.querySelector('#logout-button');
+if (logoutButton) {
+    logoutButton.addEventListener('click', async () => {
+        await supabase.auth.signOut();
+        window.location.href = 'index.html';
+    });
+}
