@@ -4,28 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gamer's Vault - Dashboard</title>
-
-    <!-- ================================================== -->
-    <!-- SCRIPT DE PROTECCIÓN - Se ejecuta antes que nada -->
-    <script type="module" src="assets/js/protection.js"></script>
-    <!-- ================================================== -->
-
-    <!-- Dependencia principal de Supabase (necesaria para los otros scripts) -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
     <!-- Estilos y fuentes -->
     <link rel="stylesheet" href="assets/css/gaming-theme.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Librería para las animaciones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 </head>
 <body>
-    <header class="dashboard-header">
+    <!-- Añadimos clases de animación al header y al main -->
+    <header class="dashboard-header animate__animated animate__fadeInDown">
         <h1 class="login-title">GAMER'S <span class="vault">VAULT</span></h1>
         <button id="logout-button" class="logout-button">
             <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
         </button>
     </header>
 
-    <main class="container">
+    <main class="container animate__animated animate__fadeInUp">
         <h2 class="welcome-title">Tu Colección de Juegos</h2>
 
         <div class="content-grid">
@@ -50,10 +46,22 @@
         </div>
     </main>
 
-    <!-- Scripts para la funcionalidad del dashboard -->
+    <!-- =================================================================== -->
+    <!--          SECCIÓN DE SCRIPTS (AQUÍ ESTÁ LA MAGIA)                    -->
+    <!-- Todos los scripts van al final y se cargan en el orden correcto.   -->
+    <!-- =================================================================== -->
+
+    <!-- 1. Librería de Chart.js (no depende de Supabase) -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script type="module" src="assets/js/auth.js"></script>
+
+    <!-- 2. Script de protección: Se ejecuta primero para validar la sesión. -->
+    <!-- Usa "module" para poder importar la configuración de Supabase. -->
+    <script type="module" src="assets/js/protection.js"></script>
+    
+    <!-- 3. Scripts de funcionalidad del dashboard. -->
+    <!-- También usan "module" para compartir la misma configuración de Supabase. -->
     <script type="module" src="assets/js/dashboard.js"></script>
     <script type="module" src="assets/js/charts.js"></script>
+
 </body>
 </html>
