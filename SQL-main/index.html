@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gamer's Vault - Login</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="assets/css/gaming-theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    
+    <style>
+        body {
+            background-color: var(--dark-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1 class="login-title">GAMER'S <span class="vault">VAULT</span></h1>
+        <p class="login-subtitle">Inicia sesión para acceder a tu colección</p>
+
+        <form id="login-form">
+            <div class="input-group">
+                <i class="icon fas fa-envelope"></i>
+                <input type="email" id="email" placeholder="Email de jugador" required>
+            </div>
+            <div class="input-group">
+                <i class="icon fas fa-lock"></i>
+                <input type="password" id="password" placeholder="Contraseña" required>
+            </div>
+            <button type="submit" class="login-button">ACCEDER</button>
+        </form>
+        
+        <p class="form-link">¿No tienes una cuenta? <a href="register.html">Regístrate</a></p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="module" src="assets/js/auth.js"></script>
+</body>
+</html>
