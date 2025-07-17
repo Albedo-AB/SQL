@@ -33,13 +33,13 @@ async function cargarVideojuegos() {
   container.innerHTML = '';
 
   if (!data || data.length === 0) {
-      console.log('🤔 La consulta fue exitosa, pero no se encontraron videojuegos en la base de datos.');
-      container.innerHTML = '<p class="card-description">No hay videojuegos en tu colección todavía.</p>';
-  } else {
+      // ... (código anterior en dashboard.js)
+
       console.log(`✨ Se encontraron ${data.length} juegos. Creando tarjetas...`);
       data.forEach(juego => {
         const card = document.createElement('div');
-        card.className = 'game-card';
+        // Añade las clases de animación aquí
+        card.className = 'game-card animate__animated animate__zoomIn'; 
         card.innerHTML = `
           <div class="card-content">
               <h4 class="card-title">${juego.titulo} (${juego.año_lanzamiento})</h4>
@@ -56,6 +56,8 @@ async function cargarVideojuegos() {
   
   button.style.display = 'none';
 }
+
+// ... (código posterior en dashboard.js)
 
 const loadButton = document.getElementById('load-games-button');
 
