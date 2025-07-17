@@ -1,3 +1,4 @@
+import { supabase } from './auth.js';
 import { supabase } from './database.js';
 
 // MENSAJE 1: Nos dice si el script se está cargando.

@@ -1,17 +1,23 @@
-// js/protection.js
+// assets/js/protection.js
 
-import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+// Importamos el cliente 'supabase' que creamos y exportamos en auth.js
+import { supabase } from './auth.js';
 
-// Asegúrate de que estas variables coincidan con las de tu archivo auth.js
-const SUPABASE_URL = 'https://hqiapfvhspauvmkbnyuq.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhxaWFwZnZoc3BhdXZta2JueXVxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE2NDI1NTgsImV4cCI6MjA2NzIxODU1OH0.wFzrnaNhkduEFwg6_8YYxjpSGP5UQAR3ocLVoDgLzms';
+// Esta función se ejecuta inmediatamente cuando se carga el script.
+const checkUserSession = async () => {
+    // Usamos supabase.auth.getSession() que es la forma moderna y asíncrona
+    // de verificar si hay una sesión activa en el navegador.
+    const { data: { session } } = await supabase.auth.getSession();
 
-const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+    if (!session) {
+        // Si NO hay sesión, el usuario no ha iniciado sesión.
+        // Lo redirigimos a la página de inicio.
+        // Usamos window.location.replace para que no pueda volver atrás con el botón del navegador.
+        window.location.replace('index.html');
+    }
+    // Si hay una sesión, el script no hace nada y permite que la página se cargue.
+};
 
-// Verifica si hay una sesión activa
-const session = await supabase.auth.getSession();
-
-// Si no hay sesión, redirige al usuario a la página de inicio
-if (!session.data.session) {
-  window.location.href = 'index.html';
-}
+// Ejecutamos la función para que se realice la comprobación.
+checkUserSession();
+// Exportamos la función para que pueda ser usada en otros scripts si es necesario.

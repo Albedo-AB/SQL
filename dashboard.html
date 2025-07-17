@@ -1,23 +1,38 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gamer's Vault - Dashboard</title>
+<<<<<<< HEAD
 
     <script type="module" src="assets/js/protection.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+=======
+>>>>>>> 502f9242abf835988b7ad84b951fb7f3b1199508
     
     <link rel="stylesheet" href="assets/css/gaming-theme.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<<<<<<< HEAD
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
 <body>
     <div class="login-container animate__animated animate__fadeInUp">
+=======
+    
+    <!-- Librería para las animaciones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+</head>
+<body>
+    <!-- Añadimos clases de animación al header y al main -->
+    <header class="dashboard-header animate__animated animate__fadeInDown">
+>>>>>>> 502f9242abf835988b7ad84b951fb7f3b1199508
         <h1 class="login-title">GAMER'S <span class="vault">VAULT</span></h1>
         <p class="login-subtitle">Inicia sesión para acceder a tu colección</p>
 
+<<<<<<< HEAD
         <form id="login-form">
             <div class="input-group">
                 <i class="icon fas fa-envelope"></i>
@@ -35,5 +50,49 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="module" src="assets/js/auth.js"></script>
+=======
+    <main class="container animate__animated animate__fadeInUp">
+        <h2 class="welcome-title">Tu Colección de Juegos</h2>
+
+        <div class="content-grid">
+            <section class="grid-section">
+                <h3 class="section-title">Videojuegos Registrados</h3>
+
+                <button id="load-games-button" class="load-button">
+                    <i class="fas fa-gamepad"></i> Mostrar mi Colección
+                </button>
+                
+                <div id="videojuegos-container" class="game-cards-container">
+                    <!-- Las tarjetas de los juegos se cargarán aquí -->
+                </div>
+            </section>
+
+            <section class="grid-section">
+                <h3 class="section-title">Estadísticas de Géneros</h3>
+                <div class="chart-container">
+                    <canvas id="genreChart"></canvas>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- =================================================================== -->
+    <!--          SECCIÓN DE SCRIPTS (AQUÍ ESTÁ LA MAGIA)                    -->
+    <!-- Todos los scripts van al final y se cargan en el orden correcto.   -->
+    <!-- =================================================================== -->
+
+    <!-- 1. Librería de Chart.js (no depende de Supabase) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- 2. Script de protección: Se ejecuta primero para validar la sesión. -->
+    <!-- Usa "module" para poder importar la configuración de Supabase. -->
+    <script type="module" src="assets/js/protection.js"></script>
+    
+    <!-- 3. Scripts de funcionalidad del dashboard. -->
+    <!-- También usan "module" para compartir la misma configuración de Supabase. -->
+    <script type="module" src="assets/js/dashboard.js"></script>
+    <script type="module" src="assets/js/charts.js"></script>
+
+>>>>>>> 502f9242abf835988b7ad84b951fb7f3b1199508
 </body>
 </html>

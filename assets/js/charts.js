@@ -1,4 +1,5 @@
 // assets/js/charts.js (CORREGIDO Y MEJORADO)
+import { supabase } from './auth.js';
 import { supabase } from './database.js';
 
 // Función para obtener la cuenta de videojuegos por género
