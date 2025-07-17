@@ -6,10 +6,11 @@
     <title>Gamer's Vault - Dashboard</title>
 
     <script type="module" src="assets/js/protection.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
     <link rel="stylesheet" href="assets/css/gaming-theme.css">
@@ -25,14 +26,19 @@
 
     <main class="container">
         <h2 class="welcome-title">Tu Colección de Juegos</h2>
+
         <div class="content-grid">
             <section class="grid-section">
                 <h3 class="section-title">Videojuegos Registrados</h3>
+
                 <button id="load-games-button" class="load-button">
                     <i class="fas fa-gamepad"></i> Mostrar mi Colección
                 </button>
-                <div id="videojuegos-container" class="game-cards-container"></div>
+                
+                <div id="videojuegos-container" class="game-cards-container">
+                    </div>
             </section>
+
             <section class="grid-section">
                 <h3 class="section-title">Estadísticas de Géneros</h3>
                 <div class="chart-container">
@@ -43,9 +49,8 @@
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script type="module" src="assets/js/database.js"></script>
     <script type="module" src="assets/js/auth.js"></script>
-    <script type="module"src="assets/js/dashboard.js"></script>
+    <script type="module" src="assets/js/dashboard.js"></script>
     <script type="module" src="assets/js/charts.js"></script>
 </body>
 </html>
