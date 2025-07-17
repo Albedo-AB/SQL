@@ -4,9 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gamer's Vault - Dashboard</title>
-    
+
+    <!-- ================================================== -->
+    <!-- SCRIPT DE PROTECCIÓN - Se ejecuta antes que nada -->
+    <script type="module" src="assets/js/protection.js"></script>
+    <!-- ================================================== -->
+
+    <!-- Dependencia principal de Supabase (necesaria para los otros scripts) -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
+    <!-- Estilos y fuentes -->
     <link rel="stylesheet" href="assets/css/gaming-theme.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -30,7 +37,8 @@
                 </button>
                 
                 <div id="videojuegos-container" class="game-cards-container">
-                    </div>
+                    <!-- Las tarjetas de los juegos se cargarán aquí -->
+                </div>
             </section>
 
             <section class="grid-section">
@@ -42,6 +50,7 @@
         </div>
     </main>
 
+    <!-- Scripts para la funcionalidad del dashboard -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script type="module" src="assets/js/auth.js"></script>
     <script type="module" src="assets/js/dashboard.js"></script>
