@@ -23,7 +23,7 @@ if (loginForm) {
             });
             return;
         }
-        
+
         if (data.user) {
             await Swal.fire({
                 icon: 'success',
